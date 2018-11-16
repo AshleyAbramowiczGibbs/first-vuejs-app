@@ -1,9 +1,13 @@
 <template>
   <div class="home">
     <h1>Add a to do item</h1>
+    <div>
+      New Task: <input type="text" v-model="newTaskItem">
+    </div>
     <button v-on:click="addToDo()">Add To Do Item!</button>
     <h1>{{ message }}</h1>
     <div v-for="todos in todo">
+      <h3></h3>
       <p>{{ todos.text }} </p>
     </div>
   </div>
@@ -15,6 +19,7 @@ export default {
   data: function() {
     return {
       message: "Welcome to Vue.js!",
+      newTaskItem: "",
       todo: [
         {
           id: 1,
@@ -35,17 +40,23 @@ export default {
     };
   },
   created: function() {
-    
+
   },
   methods: {
     addToDo: function() {
-      let newTask = {
-        id: 4,
-        text: "Work on capstone",
-        complete: false
-      };
-      this.todo.push(newTask);
+      if (this.newTaskItem !== "") {
+        let newTask = {
+          id: 6,
+          text: this.newTaskItem,
+          complete: false
+        };
+        this.todo.push(newTask);
+        this.newTaskItem = "";
+      }
     }
+    // // destroyTask: function() {
+    // //   this.newTaskItem.
+    // }
   },
   computed: {}
 };
